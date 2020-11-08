@@ -7,23 +7,31 @@ const accesstokenweatherstack = '7622ab8288f2dafbbfcbaa44ece51245'
 const forecast = (lat, long, callback) => {
 
     request
-    .get(urlweatherstack)
-    .query({ access_key: accesstokenweatherstack, query: lat+','+long }) 
-    .end((err, {body}) => {
-        
-        if(err){
-            callback('Unable to connect to weather service', undefined)
-        }else if(body.error){
-            callback('Unable to find location', undefined)
-        }else{
-            const {weather_descriptions, temperature, precip} =  body.current
-            const result = weather_descriptions+', It is '+temperature+', There is a '+precip*10+'% chance of rain'
-            callback(undefined, result)
-        }
-      
-      });
+        .get(urlweatherstack)
+        .query({
+            access_key: accesstokenweatherstack,
+            query: lat + ',' + long
+        })
+        .end((err, {
+            body
+        }) => {
+
+            if (err) {
+                callback('Unable to connect to weather service', undefined)
+            } else if (body.error) {
+                callback('Unable to find location', undefined)
+            } else {
+                const {
+                    weather_descriptions,
+                    temperature,
+                    precip
+                } = body.current
+                const result = weather_descriptions + ', It is ' + temperature + ', There is a ' + precip * 10 + '% chance of rain'
+                callback(undefined, result)
+            }
+
+        });
 
 }
 
 module.exports = forecast
-
