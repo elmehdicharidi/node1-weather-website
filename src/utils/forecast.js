@@ -26,7 +26,7 @@ const forecast = (lat, long, callback) => {
                     temperature,
                     precip
                 } = body.current
-                const result = weather_descriptions + ', It is ' + temperature + ', There is a ' + precip * 10 + '% chance of rain'
+                const result = weather_descriptions + ', It is ' + temperature + ', There is a ' + precip * 10 + '% chance of rain :)'
                 callback(undefined, result)
             }
 
